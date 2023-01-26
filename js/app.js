@@ -111,3 +111,23 @@ const eliminarEgreso = (id) => {
     cargarCabecero();
     cargarEgresos();
 }
+
+const agregarDato = () => {
+    let forma = document.forms['forma'];
+    let tipo = forma['tipo'];
+    let descripcion = forma['descripcion'];
+    let valor = forma['valor'];
+
+    if(valor.value !== '' && descripcion.value !== ''){
+        if(tipo.value === 'ingreso'){
+            ingresos.push(new Ingreso(descripcion.value , +valor.value)); //El signo + lo que hace es que si ese valor es de tipo cadena lo convierte a tipo numero
+            cargarCabecero();
+            cargarIngresos();
+        }
+        else if(tipo.value === 'egreso'){
+            egresos.push(new Egreso(descripcion.value , +valor.value));
+            cargarCabecero();
+            cargarEgresos();
+        }
+    }
+}
